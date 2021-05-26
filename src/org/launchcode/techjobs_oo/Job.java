@@ -13,8 +13,6 @@ public class Job {
     private PositionType positionType;
     private CoreCompetency coreCompetency;
 
-    private String resultString = "";
-
     // TODO: Add two constructors - one to initialize a unique ID and a second to initialize the
     //  other five fields. The second constructor should also call the first in order to initialize
     //  the 'id' field.
@@ -51,44 +49,40 @@ public class Job {
 
     @Override
     public String toString() {
-      return resultString;
-    };
-
-    public String toString(Job someJob) {
         String jobName;
         String jobEmployer;
         String jobLocation;
         String jobPositionType;
         String jobCoreCompetency;
 
-        if (someJob.name == "") {
+        if (this.name == "") {
             jobName = "Data not available";
         } else {
-            jobName = someJob.getName();
+            jobName = this.getName();
         }
 
-        if (someJob.employer.getValue() == null) {
+        if (this.employer.getValue() == null) {
             jobEmployer = "Data not available";
         } else {
-            jobEmployer = someJob.getEmployer().getValue();
+            jobEmployer = this.getEmployer().getValue();
         }
 
-        if (someJob.location.getValue() == null) {
+        if (this.location.getValue() == null) {
             jobLocation = "Data not available";
         } else {
-            jobLocation = someJob.getLocation().getValue();
+            jobLocation = this.getLocation().getValue();
         }
 
-        if (someJob.positionType.getValue() == null) {
+        if (this.positionType.getValue() == null) {
             jobPositionType = "Data not available";
         } else {
-            jobPositionType = someJob.getPositionType().getValue();
+            jobPositionType = this.getPositionType().getValue();
         }
 
-        if (someJob.coreCompetency.getValue() == null) {
+        if (this.coreCompetency.getValue() == null) {
             jobCoreCompetency = "Data not available";
         } else {
-            jobCoreCompetency = someJob.getCoreCompetency().getValue();
+            jobCoreCompetency = this.getCoreCompetency().getValue();
         }
 
         if (
@@ -101,15 +95,7 @@ public class Job {
             return "OOPS! This job does not seem to exist.";
         }
 
-        resultString = "\nJob: " + id +
-                "\nName: " + jobName +
-                "\nEmployer: " + jobEmployer +
-                "\nLocation: " + jobLocation +
-                "\nPosition Type: " + jobPositionType +
-                "\nCore Competency: " + jobCoreCompetency +
-                "\n";
-
-        return "\nJob: " + id +
+        return "\nJob: " + this.id +
                 "\nName: " + jobName +
                 "\nEmployer: " + jobEmployer +
                 "\nLocation: " + jobLocation +

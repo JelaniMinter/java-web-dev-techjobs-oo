@@ -96,22 +96,23 @@ public class JobTest {
     //Tests for toString Method
     @Test
     public void checkBlankLines() {
-        String testJob = fullJob.toString(fullJob);
+        String testJob = fullJob.toString();
         assertTrue(testJob.startsWith("\n") && testJob.endsWith("\n"));
     }
 
     @Test
     public void testNullField() {
-        String testJob = fullJob.toString(fullJob);
+        String testJob = partialJob.toString();
         String[] resultArray = testJob.split("\n");
         String testString = resultArray[1];
         System.out.println(resultArray.length);
-        assertEquals("Job: 6", testString);
+        System.out.println(testJob);
+        assertEquals("Job: 5", testString);
     }
 
     @Test
     public void testPartiallyEmptyJob() {
-        String testJob = fullJob.toString(partialJob);
+        String testJob = partialJob.toString();
         String[] resultArray = testJob.split("\n");
         String testString = resultArray[2];
         System.out.println(testJob);
@@ -120,7 +121,7 @@ public class JobTest {
 
     @Test
     public void testEmptyJob() {
-        String testJob = fullJob.toString(emptyJob);
+        String testJob = emptyJob.toString();
         assertEquals("OOPS! This job does not seem to exist.", testJob);
     }
 }
