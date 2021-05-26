@@ -13,6 +13,8 @@ public class Job {
     private PositionType positionType;
     private CoreCompetency coreCompetency;
 
+    private String resultString = "";
+
     // TODO: Add two constructors - one to initialize a unique ID and a second to initialize the
     //  other five fields. The second constructor should also call the first in order to initialize
     //  the 'id' field.
@@ -47,6 +49,74 @@ public class Job {
         return Objects.hash(id);
     }
 
+    @Override
+    public String toString() {
+      return resultString;
+    };
+
+    public String toString(Job someJob) {
+        String jobName;
+        String jobEmployer;
+        String jobLocation;
+        String jobPositionType;
+        String jobCoreCompetency;
+
+        if (someJob.name == "") {
+            jobName = "Data not available";
+        } else {
+            jobName = someJob.getName();
+        }
+
+        if (someJob.employer.getValue() == null) {
+            jobEmployer = "Data not available";
+        } else {
+            jobEmployer = someJob.getEmployer().getValue();
+        }
+
+        if (someJob.location.getValue() == null) {
+            jobLocation = "Data not available";
+        } else {
+            jobLocation = someJob.getLocation().getValue();
+        }
+
+        if (someJob.positionType.getValue() == null) {
+            jobPositionType = "Data not available";
+        } else {
+            jobPositionType = someJob.getPositionType().getValue();
+        }
+
+        if (someJob.coreCompetency.getValue() == null) {
+            jobCoreCompetency = "Data not available";
+        } else {
+            jobCoreCompetency = someJob.getCoreCompetency().getValue();
+        }
+
+        if (
+                jobName == "Data not available" &&
+                        jobEmployer == "Data not available" &&
+                        jobLocation == "Data not available" &&
+                        jobPositionType == "Data not available" &&
+                        jobCoreCompetency == "Data not available"
+        ) {
+            return "OOPS! This job does not seem to exist.";
+        }
+
+        resultString = "\nJob: " + id +
+                "\nName: " + jobName +
+                "\nEmployer: " + jobEmployer +
+                "\nLocation: " + jobLocation +
+                "\nPosition Type: " + jobPositionType +
+                "\nCore Competency: " + jobCoreCompetency +
+                "\n";
+
+        return "\nJob: " + id +
+                "\nName: " + jobName +
+                "\nEmployer: " + jobEmployer +
+                "\nLocation: " + jobLocation +
+                "\nPosition Type: " + jobPositionType +
+                "\nCore Competency: " + jobCoreCompetency +
+                "\n";
+    }
 
     // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
     //  and id.

@@ -4,14 +4,19 @@ import org.junit.Before;
 import org.junit.Test;
 import org.launchcode.techjobs_oo.*;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import java.sql.SQLOutput;
+import java.util.ArrayList;
+
+import static org.junit.Assert.*;
 
 public class JobTest {
 
+    //Declared variables
     Job firstJob;
     Job secondJob;
     Job thirdJob;
+    Job emptyJob;
+    Job partialJob;
     Job fullJob;
     Job secondFullJob;
 
@@ -20,6 +25,20 @@ public class JobTest {
         firstJob = new Job();
         secondJob = new Job();
         thirdJob = new Job();
+        emptyJob = new Job(
+                "",
+                new Employer(),
+                new Location(),
+                new PositionType(),
+                new CoreCompetency()
+        );
+        partialJob = new Job(
+                "",
+                new Employer("ACME"),
+                new Location("Desert"),
+                new PositionType("Quality control"),
+                new CoreCompetency("Persistence")
+        );
         fullJob = new Job(
                 "Product tester",
                 new Employer("ACME"),
@@ -72,6 +91,36 @@ public class JobTest {
         assertFalse(
                 fullJob.equals(secondFullJob) == true
         );
+    }
 
+    //Tests for toString Method
+    @Test
+    public void checkBlankLines() {
+        String testJob = fullJob.toString(fullJob);
+        assertTrue(testJob.startsWith("\n") && testJob.endsWith("\n"));
+    }
+
+    @Test
+    public void testNullField() {
+        String testJob = fullJob.toString(fullJob);
+        String[] resultArray = testJob.split("\n");
+        String testString = resultArray[1];
+        System.out.println(resultArray.length);
+        assertEquals("Job: 6", testString);
+    }
+
+    @Test
+    public void testPartiallyEmptyJob() {
+        String testJob = fullJob.toString(partialJob);
+        String[] resultArray = testJob.split("\n");
+        String testString = resultArray[2];
+        System.out.println(testJob);
+        assertEquals("Name: Data not available", testString);
+    }
+
+    @Test
+    public void testEmptyJob() {
+        String testJob = fullJob.toString(emptyJob);
+        assertEquals("OOPS! This job does not seem to exist.", testJob);
     }
 }
