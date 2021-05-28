@@ -49,58 +49,48 @@ public class Job {
 
     @Override
     public String toString() {
-        String jobName;
-        String jobEmployer;
-        String jobLocation;
-        String jobPositionType;
-        String jobCoreCompetency;
+//        String jobName;
+//        String jobEmployer;
+//        String jobLocation;
+//        String jobPositionType;
+//        String jobCoreCompetency;
 
         if (this.name == "") {
-            jobName = "Data not available";
-        } else {
-            jobName = this.getName();
+            this.name = "Data not available";
         }
 
         if (this.employer.getValue() == null) {
-            jobEmployer = "Data not available";
-        } else {
-            jobEmployer = this.getEmployer().getValue();
+            this.employer.setValue("Data not available");
         }
 
         if (this.location.getValue() == null) {
-            jobLocation = "Data not available";
-        } else {
-            jobLocation = this.getLocation().getValue();
+            this.location.setValue("Data not available");
         }
 
         if (this.positionType.getValue() == null) {
-            jobPositionType = "Data not available";
-        } else {
-            jobPositionType = this.getPositionType().getValue();
+            this.positionType.setValue("Data not available");
         }
 
         if (this.coreCompetency.getValue() == null) {
-            jobCoreCompetency = "Data not available";
-        } else {
-            jobCoreCompetency = this.getCoreCompetency().getValue();
+            this.coreCompetency.setValue("Data not available");
         }
 
         if (
-                jobName == "Data not available" &&
-                        jobEmployer == "Data not available" &&
-                        jobLocation == "Data not available" &&
-                        jobPositionType == "Data not available" &&
-                        jobCoreCompetency == "Data not available"
+                this.name == "Data not available" &&
+                        this.employer.getValue() == "Data not available" &&
+                        this.location.getValue() == "Data not available" &&
+                        this.positionType.getValue() == "Data not available" &&
+                        this.coreCompetency.getValue() == "Data not available"
         ) {
             return "OOPS! This job does not seem to exist.";
         }
 
         return "\nJob: " + this.id +
-                "\nName: " + jobName +
-                "\nEmployer: " + jobEmployer +
-                "\nLocation: " + jobLocation +
-                "\nPosition Type: " + jobPositionType +
-                "\nCore Competency: " + jobCoreCompetency +
+                "\nName: " + this.name +
+                "\nEmployer: " + this.employer.getValue() +
+                "\nLocation: " + this.location.getValue() +
+                "\nPosition Type: " + this.positionType.getValue() +
+                "\nCore Competency: " + this.coreCompetency.getValue() +
                 "\n";
     }
 

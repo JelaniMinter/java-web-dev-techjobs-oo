@@ -72,24 +72,26 @@ public class JobTest {
 
     @Test
     public void testJobConstructorSetsAllFields() {
+//        assertTrue(
+//                fullJob.getEmployer() instanceof Employer &&
+//                        fullJob.getLocation() instanceof Location &&
+//                        fullJob.getPositionType() instanceof PositionType &&
+//                        fullJob.getCoreCompetency() instanceof CoreCompetency
+//        );
         assertTrue(
-                fullJob.getEmployer() instanceof Employer &&
-                        fullJob.getLocation() instanceof Location &&
-                        fullJob.getPositionType() instanceof PositionType &&
-                        fullJob.getCoreCompetency() instanceof CoreCompetency
-        );
-        assertTrue(
-                fullJob.getEmployer().getValue() == "ACME" &&
+                fullJob.getName() == "Product tester" &&
+                        fullJob.getEmployer().getValue() == "ACME" &&
                         fullJob.getLocation().getValue() == "Desert" &&
                         fullJob.getPositionType().getValue() == "Quality control" &&
                         fullJob.getCoreCompetency().getValue() == "Persistence"
         );
+        //assertEquals("ACME", fullJob.getEmployer().getValue());
     }
 
     @Test
     public void testJobsForEquality() {
         assertFalse(
-                fullJob.equals(secondFullJob) == true
+                fullJob.equals(secondFullJob)
         );
     }
 
@@ -101,13 +103,14 @@ public class JobTest {
     }
 
     @Test
-    public void testNullField() {
+    public void testCorrectJobFormat() {
         String testJob = partialJob.toString();
-        String[] resultArray = testJob.split("\n");
-        String testString = resultArray[1];
-        System.out.println(resultArray.length);
-        System.out.println(testJob);
-        assertEquals("Job: 5", testString);
+//        String[] resultArray = testJob.split("\n");
+//        String testString = resultArray[1];
+//        System.out.println(resultArray.length);
+//        System.out.println(testJob);
+        String formatted = String.format("\nEmployer: %s\n", partialJob.getEmployer().getValue());
+        assertEquals(true, testJob.contains(formatted));
     }
 
     @Test
