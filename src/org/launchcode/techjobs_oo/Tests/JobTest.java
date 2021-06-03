@@ -108,9 +108,15 @@ public class JobTest {
 //        String[] resultArray = testJob.split("\n");
 //        String testString = resultArray[1];
 //        System.out.println(resultArray.length);
-//        System.out.println(testJob);
+        System.out.println(testJob);
         String formatted = String.format("\nEmployer: %s\n", partialJob.getEmployer().getValue());
-        assertEquals(true, testJob.contains(formatted));
+        assertEquals("\nJob: " + partialJob.getId() +
+                "\nName: " + partialJob.getName() +
+                "\nEmployer: " + partialJob.getEmployer().getValue() +
+                "\nLocation: " + partialJob.getLocation().getValue() +
+                "\nPosition Type: " + partialJob.getPositionType().getValue() +
+                "\nCore Competency: " + partialJob.getCoreCompetency().getValue() +
+                "\n", partialJob.toString());
     }
 
     @Test
@@ -119,7 +125,13 @@ public class JobTest {
         String[] resultArray = testJob.split("\n");
         String testString = resultArray[2];
         System.out.println(testJob);
-        assertEquals("Name: Data not available", testString);
+        assertEquals("\nJob: " + partialJob.getId() +
+                "\nName: Data not available" +
+                "\nEmployer: " + partialJob.getEmployer().getValue() +
+                "\nLocation: " + partialJob.getLocation().getValue() +
+                "\nPosition Type: " + partialJob.getPositionType().getValue() +
+                "\nCore Competency: " + partialJob.getCoreCompetency().getValue() +
+                "\n", partialJob.toString());
     }
 
     @Test
